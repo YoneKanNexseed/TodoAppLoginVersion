@@ -11,7 +11,10 @@ $task = $_POST['task'];
 $todo = new Todo();
 
 // Todoクラスのcreateメソッドを実行
-$todo->create();
+$todo->create($task);
+
+// 一覧画面に戻る
+header('Location: index.php');
 
 // echo '<br>';
 // echo $todo->table;
