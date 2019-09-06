@@ -54,4 +54,10 @@ class Todo
     // 取得した結果を返す
     return $tasks;
   }
+
+  // 削除するメソッド
+  public function delete()
+  {
+
+  }
 }

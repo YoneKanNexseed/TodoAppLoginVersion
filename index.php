@@ -9,7 +9,7 @@ $todo = new Todo();
 // getAllメソッド使って、タスクをすべて取得
 $tasks = $todo->getAll();
 
-var_dump($tasks);
+// var_dump($tasks);
 
 ?>
 <!DOCTYPE html>
@@ -58,28 +58,22 @@ var_dump($tasks);
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>create new website</td>
-                        <td>2019/08/21</td>
-                        <td>
-                            <a class="text-success" href="edit.php">EDIT</a>
-                        </td>
-                        <td>
-                            <a class="text-danger" href="delete.php">DELETE</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>go to club</td>
-                        <td>2019/10/21</td>
-                        <td>
-                            <a class="text-success" href="edit.php">EDIT</a>
-                        </td>
-                        <td>
-                            <a class="text-danger" href="delete.php">DELETE</a>
-                        </td>
-                    </tr>
+
+                    <?php foreach($tasks as $task): ?>
+                        <tr>
+                            <td><?php echo $task['name']; ?></td>
+                            <td><?php echo $task['due_date']; ?></td>
+                            <td>
+                                <a class="text-success" href="edit.php">EDIT</a>
+                            </td>
+                            <td>
+                                <a class="text-danger" href="delete.php?id=<?php echo $task['id']; ?>">DELETE</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+
                 </tbody>
-            </table>  
+            </table>
         </section>
     </main>
     
