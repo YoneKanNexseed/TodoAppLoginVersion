@@ -1,8 +1,15 @@
 <?php
 
+// Todoクラスの読み込み
+require_once('Models/Todo.php');
 
+// Todoクラスをインスタンス化
+$todo = new Todo();
 
+// getAllメソッド使って、タスクをすべて取得
+$tasks = $todo->getAll();
 
+var_dump($tasks);
 
 ?>
 <!DOCTYPE html>

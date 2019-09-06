@@ -38,4 +38,20 @@ class Todo
     // 準備したものを実行
     $stmt->execute([$task]);
   }
+
+  // タスクをすべて取得する
+  public function getAll()
+  {
+    // SELECT文の準備
+    $stmt = $this->db_manager->dbh->prepare('SELECT * FROM ' . $this->table);
+
+    // 準備したSQLを実行
+    $stmt->execute();
+
+    // 実行した結果を取得
+    $tasks = $stmt->fetchAll();
+
+    // 取得した結果を返す
+    return $tasks;
+  }
 }
