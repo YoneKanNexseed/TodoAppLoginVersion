@@ -64,4 +64,17 @@ class Todo
     // SQL実行
     $stmt->execute([$id]);
   }
+
+  // IDをもとにタスクを1件だけ取得するメソッド
+  public function get($id)
+  {
+    // SQL準備
+    $stmt = $this->db_manager->dbh->prepare('SELECT * FROM ' . $this->table . ' WHERE id = ?');
+    // 実行
+    $stmt->execute([$id]);
+    $task = $stmt->fetch();
+
+    // 取得したタスクを返す
+    return $task;
+  }
 }
