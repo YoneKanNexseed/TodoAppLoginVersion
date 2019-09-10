@@ -14,7 +14,7 @@ $todo = new Todo();
 $todo->create($task);
 
 // 一覧画面に戻る
-// header('Location: index.php');
+header('Location: index.php');
 
 // echo '<br>';
 // echo $todo->table;

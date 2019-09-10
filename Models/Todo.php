@@ -56,8 +56,12 @@ class Todo
   }
 
   // 削除するメソッド
-  public function delete()
+  public function delete($id)
   {
+    // 該当IDを削除するSQLの準備
+    $stmt = $this->db_manager->dbh->prepare('DELETE FROM ' . $this->table . ' WHERE id = ?');
 
+    // SQL実行
+    $stmt->execute([$id]);
   }
 }
