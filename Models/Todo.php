@@ -77,4 +77,14 @@ class Todo
     // 取得したタスクを返す
     return $task;
   }
+
+  // 更新するメソッド
+  public function update($id, $name)
+  {
+    // SQL準備
+    $stmt = $this->db_manager->dbh->prepare('UPDATE ' . $this->table . ' SET name = ? WHERE id = ?');
+    
+    // 実行
+    $stmt->execute([$name, $id]);
+  }
 }
