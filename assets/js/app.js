@@ -25,4 +25,30 @@ $(function() {
     });
   })
 
+  // 追加ボタンがクリックされた時
+  $('#add-button').on('click', function(e) {
+
+    // 送信処理を無効化
+    e.preventDefault();
+
+    // 画面に入力された文字を取得
+    let text = $('#input-task').val();
+
+    $.ajax({
+      url: 'http://localhost/TodoApp/create.php',
+      type:'POST',
+      dataType: 'json',
+      data: {
+        // ここに送信したい値を記述
+        task: text
+      }
+    }).done((data) => {
+      console.log(data);
+    }).fail(() => {
+
+    })
+
+  })
+
+
 })

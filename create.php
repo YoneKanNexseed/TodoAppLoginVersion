@@ -1,5 +1,7 @@
 <?php
 
+header("Content-type: application/json; charset=utf-8");
+
 // Todo.phpを読み込む
 require_once('Models/Todo.php');
 
@@ -11,10 +13,15 @@ $task = $_POST['task'];
 $todo = new Todo();
 
 // Todoクラスのcreateメソッドを実行
-$todo->create($task);
+$lastId = $todo->create($task);
 
+// 取得した最新のIDをもとに、タスクを取得
+$newtask = $todo->get($lastId);
+
+echo json_encode($newtask);
+exit();
 // 一覧画面に戻る
-header('Location: index.php');
+// header('Location: index.php');
 
 // echo '<br>';
 // echo $todo->table;

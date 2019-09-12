@@ -39,10 +39,10 @@ $tasks = $todo->getAll();
         <section>
             <form class="form-row" action="create.php" method="POST">
                 <div class="col-12 col-md-9 py-2">
-                    <input type="text" name="task" class="form-control" placeholder="ADD TODO">
+                    <input id="input-task" type="text" name="task" class="form-control" placeholder="ADD TODO">
                 </div>
                 <div class="py-2 col-md-3 col-12">
-                    <button type="submit" class="col-12 btn btn-primary btn-block">ADD</button>
+                    <button id="add-button" type="submit" class="col-12 btn btn-primary btn-block">ADD</button>
                 </div>
             </form>
         </section>

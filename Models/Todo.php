@@ -37,6 +37,9 @@ class Todo
     $stmt = $this->db_manager->dbh->prepare('INSERT INTO ' . $this->table . '(name) VALUES (?)');
     // 準備したものを実行
     $stmt->execute([$task]);
+
+    // 今作成したタスクのIDを返す
+    return $this->db_manager->dbh->lastInsertId();
   }
 
   // タスクをすべて取得する
