@@ -60,14 +60,14 @@ $tasks = $todo->getAll();
                 <tbody>
 
                     <?php foreach($tasks as $task): ?>
-                        <tr>
+                        <tr id="task-<?php echo $task['id']; ?>">
                             <td><?php echo $task['name']; ?></td>
                             <td><?php echo $task['due_date']; ?></td>
                             <td>
                                 <a class="text-success" href="edit.php?id=<?php echo $task['id']; ?>">EDIT</a>
                             </td>
                             <td>
-                                <a class="text-danger" href="delete.php?id=<?php echo $task['id']; ?>">DELETE</a>
+                                <a class="text-danger delete-button" data-id="<?php echo $task['id']; ?>" href="delete.php?id=<?php echo $task['id']; ?>">DELETE</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -77,6 +77,7 @@ $tasks = $todo->getAll();
         </section>
     </main>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="assets/js/app.js"></script>
 </body>
 </html>

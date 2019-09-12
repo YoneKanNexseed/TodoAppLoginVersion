@@ -12,5 +12,7 @@ $todo = new Todo();
 // 削除の実行
 $todo->delete($id);
 
+echo json_encode($id);
+
 // 一覧の画面に戻る
-header('Location: index.php');
+// header('Location: index.php');

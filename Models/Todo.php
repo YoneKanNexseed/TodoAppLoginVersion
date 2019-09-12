@@ -34,7 +34,7 @@ class Todo
   public function create($task)
   {
     // INSERT分の準備
-    $stmt = $this->db_manager->dbh->prepare('INSERT INTO ' . $this->table . '(name) VALUES (?)');
+    $stmt = $this->db_manager->dbh->prepare('INSERT INTO ' . $this->table . '(name) VALUES (?)');
     // 準備したものを実行
     $stmt->execute([$task]);
   }
