@@ -8,7 +8,7 @@ class DbManager
     {
         //DBに接続
         $host = "127.0.0.1";
-        $dbname = "todo_app";
+        $dbname = "todo_app_login_version";
         $charset = "utf8mb4";
         $user = 'root';
         $password='';

@@ -1,6 +1,7 @@
 $(function() {
 
-  $('.delete-button').on('click', function(e) {
+  // $('.delete-button').on('click', function(e) {
+  $(document).on('click', '.delete-button', function(e) {
 
     // aタグのリンク機能を無効化
     e.preventDefault();
@@ -10,7 +11,7 @@ $(function() {
 
     // ajax処理を開始
     $.ajax({
-      url: 'http://localhost/TodoApp/delete.php',
+      url: 'delete.php',
       type: 'GET',
       dataType: 'json',
       data: {
@@ -35,7 +36,7 @@ $(function() {
     let text = $('#input-task').val();
 
     $.ajax({
-      url: 'http://localhost/TodoApp/create.php',
+      url: 'create.php',
       type:'POST',
       dataType: 'json',
       data: {
@@ -44,11 +45,25 @@ $(function() {
       }
     }).done((data) => {
       console.log(data);
-    }).fail(() => {
 
+      // tbodyの中に、新しいタスク用にtrタグ等を作成する
+      $('tbody').prepend(
+        `<tr id="task-${data['id']}">` + 
+          `<td>${data['name']}</td>` + 
+          `<td>${data['due_date']}</td>` + 
+          `<td>` + 
+            `<a class="text-success" href="edit.php?id=${data['id']}">EDIT</a>` + 
+          `</td>` + 
+          `<td>` + 
+            `<a class="text-danger delete-button" data-id=${data['id']} href="delete.php?id=${data['id']}">DELETE</a>` + 
+          `</td>` + 
+        `</tr>`
+      );
+
+    }).fail((error) => {
+      console.log(error);
     })
 
   })
-
 
 })

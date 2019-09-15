@@ -90,4 +90,32 @@ class Todo
     // 実行
     $stmt->execute([$name, $id]);
   }
+
+  // ユーザーIDとタスク名から新規タスクを作成する
+  public function createWithUsername($task, $username)
+  {
+    // INSERT分の準備
+    $stmt = $this->db_manager->dbh->prepare('INSERT INTO ' . $this->table . '(user_id, name) VALUES (?, ?)');
+    // 準備したものを実行
+    $stmt->execute([$username, $task]);
+
+    // 今作成したタスクのIDを返す
+    return $this->db_manager->dbh->lastInsertId();
+  }
+
+  // ユーザーIDが一致するタスクをすべて取得する
+  public function findByUsername($username)
+  {
+    // SELECT文の準備
+    $stmt = $this->db_manager->dbh->prepare('SELECT * FROM ' . $this->table . ' WHERE user_id = ?');
+
+    // 準備したSQLを実行
+    $stmt->execute([$username]);
+
+    // 実行した結果を取得
+    $tasks = $stmt->fetchAll();
+
+    // 取得した結果を返す
+    return $tasks;
+  }
 }

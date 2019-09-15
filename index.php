@@ -1,15 +1,29 @@
 <?php
 
+// セッションの開始
+session_start();
+
+// ログインしているかチェック
+if (!isset($_SESSION['user'])) {
+    // ログインしていない場合
+    // 登録画面に遷移
+    header('Location: signup.html');
+}
+
+// ログイン情報の取得
+$user = $_SESSION['user'];
+$userId = $user['id'];
+
 // Todoクラスの読み込み
 require_once('Models/Todo.php');
 
 // Todoクラスをインスタンス化
 $todo = new Todo();
 
-// getAllメソッド使って、タスクをすべて取得
-$tasks = $todo->getAll();
+// findByUsernameメソッド使って、タスクをすべて取得
+$tasks = $todo->findByUsername($userId);
 
-// var_dump($tasks);
+var_dump($user);
 
 ?>
 <!DOCTYPE html>
@@ -29,8 +43,9 @@ $tasks = $todo->getAll();
             <a href="index.php" class="navbar-brand">TODO APP</a>
             <div class="justify-content-end">
                 <span class="text-light">
-                    SeedKun
+                    <?php echo $user['username']; ?>
                 </span>
+                <a class="btn btn-success" href="logout.php">ログアウト</a>
             </div>
         </nav>
     </header>
